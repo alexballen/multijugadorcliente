@@ -14,6 +14,7 @@ import s from "./GameSettings.module.css";
 import { TfiReload } from "react-icons/tfi";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { MdRestartAlt } from "react-icons/md";
+import { GoPlay } from "react-icons/go";
 
 const GameSettings = ({
   connectionMessages,
@@ -135,6 +136,7 @@ const GameSettings = ({
 
       {!showSettings && (
         <div className={s.nickname}>
+          <h3 className={s.nicknametitle}>Configurar Sala de Juego</h3>
           <div className={s.margindivs}>
             <h3>Alias</h3>
             <input
@@ -157,7 +159,7 @@ const GameSettings = ({
             />
           </div>
           <div className={s.margindivs}>
-            <h3>Jugadores por juego</h3>
+            <h3>Jugadores</h3>
             <input
               value={numOfPlayers}
               readOnly={connectionMessages?.connected === true ? true : false}
@@ -167,7 +169,7 @@ const GameSettings = ({
             />
           </div>
           <div className={s.margindivs}>
-            <h3>Número de rondas</h3>
+            <h3>Rondas</h3>
             <div className={s.buttonselect}>
               <select
                 value={rounds}
@@ -188,19 +190,71 @@ const GameSettings = ({
               </select>
               <div className={s.TfiReload}>
                 <TfiReload
-                  onClick={() => HandleReload(players, Swal, "reload")}
+                  onClick={() =>
+                    HandleReload(
+                      players,
+                      Swal,
+                      "reload",
+                      userNameId,
+                      playersRoom,
+                      numOfPlayers,
+                      rounds
+                    )
+                  }
                 />
                 <p>Recargar</p>
               </div>
-              <button
-                disabled={connectionMessages?.connected === true ? true : false}
-                onClick={() =>
-                  HandlerNewUser(userNameId, playersRoom, numOfPlayers, rounds)
-                }
-              >
-                Iniciar
-              </button>
+              <div className={s.containergoplay}>
+                <GoPlay
+                  className={s.goplay}
+                  onClick={() =>
+                    HandlerNewUser(
+                      userNameId,
+                      playersRoom,
+                      numOfPlayers,
+                      rounds
+                    )
+                  }
+                />
+                <p>Iniciar</p>
+              </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {!showSettings && (
+        <div className={s.nickname}>
+          <h3 className={s.nicknametitle}>Conectarse a Sala de Juego</h3>
+          <div className={s.margindivs}>
+            <h3>Alias</h3>
+            <input
+              value={userNameId}
+              className={s.miinput}
+              readOnly={connectionMessages?.connected === true ? true : false}
+              type="text"
+              placeholder="Ingresa tu alias"
+              onChange={(event) => handleUserId(event)}
+            />
+          </div>
+          <div className={s.margindivs}>
+            <h3>Sala</h3>
+            <input
+              value={playersRoom}
+              readOnly={connectionMessages?.connected === true ? true : false}
+              type="text"
+              placeholder="Ingresa sala de juego"
+              onChange={(event) => handleRoomName(event)}
+            />
+          </div>
+          <div className={s.containergoplay}>
+            <GoPlay
+              className={s.goplay}
+              onClick={() =>
+                HandlerNewUser(userNameId, playersRoom, numOfPlayers, rounds)
+              }
+            />
+            <p>Conectar</p>
           </div>
           <div className={s.connectionmsm}>{errorMessage}</div>
         </div>
@@ -241,7 +295,7 @@ const GameSettings = ({
       {showSettings && (
         <div className={s.containershotbutton}>
           <div className={s.containershot}>
-            <h3>Tiro jugador</h3>
+            <h3>Tiro</h3>
             {!gameOver && (
               <input
                 type="number"
@@ -281,7 +335,7 @@ const GameSettings = ({
 
       {showSettings && (
         <div className={s.containertable}>
-          <h3>Tabla puntuación</h3>
+          <h3>Puntuación</h3>
           <table>
             <thead>
               <tr className={s.trtitle}>
@@ -320,9 +374,9 @@ const GameSettings = ({
 
       {showSettings && (
         <div className={s.containerchat}>
-          <h3>Chat de juego</h3>
+          <h3>Chat </h3>
           <div ref={messagesContainerRef} className={s.messages}>
-            {storedUserChatMessage.map((msm, index) => (
+            {storedUserChatMessage?.map((msm, index) => (
               <div className={s.containermap} key={index}>
                 <span className={s.userName}>{msm.user}:</span>
                 <span className={s.messageText}>{msm.message}</span>

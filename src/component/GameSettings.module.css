@@ -28,6 +28,10 @@
   width: 100%;
 }
 
+.nicknametitle {
+  text-align: center;
+}
+
 .nickname h3 {
   width: 350px;
 }
@@ -59,6 +63,21 @@
   margin: 5px;
 }
 
+.containergoplay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.containergoplay p {
+  font-size: 70%;
+}
+
+.goplay {
+  font-size: 1.2em;
+}
+
 .containerturnscore {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   display: flex;
@@ -76,6 +95,12 @@
   justify-content: space-around;
   width: 100%;
   margin-bottom: 5px;
+}
+
+.turn h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .turn h4 {
@@ -223,7 +248,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  max-height: 100px;
+  max-height: 120px;
   overflow-y: auto;
   margin-top: 5px;
   padding: 5px;

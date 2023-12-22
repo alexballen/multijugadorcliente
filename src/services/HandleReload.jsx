@@ -1,6 +1,20 @@
-const HandleReload = (players, Swal, string) => {
+const HandleReload = (
+  players,
+  Swal,
+  string,
+  userNameId,
+  playersRoom,
+  numOfPlayers,
+  rounds
+) => {
   if (string === "reload") {
-    if (Object.keys(players).length > 0) {
+    if (
+      Object.keys(players).length > 0 ||
+      userNameId ||
+      playersRoom ||
+      numOfPlayers ||
+      rounds
+    ) {
       Swal.fire({
         position: "center",
         icon: "success",
