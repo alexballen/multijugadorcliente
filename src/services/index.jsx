@@ -8,3 +8,4 @@ export { default as GetLocalStorage } from "./GetLocalStorage";
 export { default as UpdatePlayers } from "./UpdatePlayers";
 export { default as Winners } from "./Winners";
 export { default as HandlerChat } from "./HandlerChat";
+export { default as HandleReload } from "./HandleReload";

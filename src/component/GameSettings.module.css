@@ -43,6 +43,18 @@
   justify-content: space-between;
 }
 
+.TfiReload {
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.TfiReload p {
+  font-size: 70%;
+}
+
 .margindivs {
   margin: 5px;
 }
@@ -271,6 +283,32 @@
   margin: 5px;
 }
 
+.connectionmsm {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: 350px;
+  text-align: center;
+  padding: 3px;
+  color: red;
+  font-size: 110%;
+}
+
+.containermsm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.connectionmsmerror {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: 350px;
+  text-align: center;
+  padding: 3px;
+  color: red;
+  font-size: 110%;
+}
+
 @media (max-width: 768px) {
   .containertable {
     max-height: 200px;
@@ -319,6 +357,14 @@
   .containershotbutton input {
     width: 280px;
   }
+
+  .connectionmsm {
+    width: 280px;
+  }
+
+  .connectionmsmerror {
+    width: 280px;
+  }
 }
 
 @media (max-width: 320px) {
@@ -339,6 +385,14 @@
   }
 
   .containershotbutton input {
+    width: 250px;
+  }
+
+  .connectionmsm {
+    width: 250px;
+  }
+
+  .connectionmsmerror {
     width: 250px;
   }
 }

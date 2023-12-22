@@ -7,9 +7,13 @@ import {
   ConnectionIncompleteMessage,
   UserDisconnectionMessage,
   HandlerChat,
+  HandleReload,
 } from "../services";
 import Swal from "sweetalert2";
 import s from "./GameSettings.module.css";
+import { TfiReload } from "react-icons/tfi";
+import { RiLogoutCircleRLine } from "react-icons/ri";
+import { MdRestartAlt } from "react-icons/md";
 
 const GameSettings = ({
   connectionMessages,
@@ -78,7 +82,9 @@ const GameSettings = ({
         }));
       }
 
-      if (connectionMessages.message === "The shooting range cannot be empty") {
+      if (
+        connectionMessages.message === "El campo de tiro no puede estar vacío"
+      ) {
         Swal.fire({
           position: "center",
           icon: "warning",
@@ -124,44 +130,44 @@ const GameSettings = ({
   return (
     <div className={s.container}>
       <div className={s.title}>
-        <h1>Nearby Number</h1>
+        <h1>Número + Cercano</h1>
       </div>
 
       {!showSettings && (
         <div className={s.nickname}>
           <div className={s.margindivs}>
-            <h3>Nickname</h3>
+            <h3>Alias</h3>
             <input
               value={userNameId}
               className={s.miinput}
               readOnly={connectionMessages?.connected === true ? true : false}
               type="text"
-              placeholder="Enter your nickname"
+              placeholder="Ingresa tu alias"
               onChange={(event) => handleUserId(event)}
             />
           </div>
           <div className={s.margindivs}>
-            <h3>Room name</h3>
+            <h3>Sala</h3>
             <input
               value={playersRoom}
               readOnly={connectionMessages?.connected === true ? true : false}
               type="text"
-              placeholder="Enter room name"
+              placeholder="Ingresa sala de juego"
               onChange={(event) => handleRoomName(event)}
             />
           </div>
           <div className={s.margindivs}>
-            <h3>Players per game</h3>
+            <h3>Jugadores por juego</h3>
             <input
               value={numOfPlayers}
               readOnly={connectionMessages?.connected === true ? true : false}
               type="number"
-              placeholder="Enter Number of players per game"
+              placeholder="Ingrese el número de jugadores por juego"
               onChange={(event) => handleNumberOfPlayers(event)}
             />
           </div>
           <div className={s.margindivs}>
-            <h3>Number of rounds</h3>
+            <h3>Número de rondas</h3>
             <div className={s.buttonselect}>
               <select
                 value={rounds}
@@ -169,58 +175,80 @@ const GameSettings = ({
                 onChange={(event) => handlerRoundsGame(event)}
               >
                 <option disabled value="">
-                  Rounds
+                  Rondas
                 </option>
-                <option value="3">3 Rounds</option>
-                <option value="6">6 Rounds</option>
-                <option value="9">9 Rounds</option>
+                <option value="3">3 Rondas</option>
+                <option value="7">7 Rondas</option>
+                <option value="11">11 Rondas</option>
+                <option value="15">15 Rondas</option>
+                <option value="19">19 Rondas</option>
+                <option value="23">23 Rondas</option>
+                <option value="27">27 Rondas</option>
+                <option value="31">31 Rondas</option>
               </select>
+              <div className={s.TfiReload}>
+                <TfiReload
+                  onClick={() => HandleReload(players, Swal, "reload")}
+                />
+                <p>Recargar</p>
+              </div>
               <button
                 disabled={connectionMessages?.connected === true ? true : false}
                 onClick={() =>
                   HandlerNewUser(userNameId, playersRoom, numOfPlayers, rounds)
                 }
               >
-                Start setup
+                Iniciar
               </button>
             </div>
           </div>
-          {errorMessage}
+          <div className={s.connectionmsm}>{errorMessage}</div>
         </div>
       )}
 
-      <div className={s.containerturnscore}>
-        <div className={s.turn}>
-          <h3>Turn:</h3>
-          <h4>{turn.message}</h4>
-          <button onClick={() => RestartE(playersRoom)}>Restart</button>
-        </div>
-        <div className={s.score}>
-          <h3>Score:</h3>
-          <div className={s.scoremap}>
-            {Object.keys(userId).length
-              ? score &&
-                Object.keys(score).map((user) => (
-                  <div key={user} className={s.scoremapitem}>
-                    {user}:{score[user]}
-                  </div>
-                ))
-              : ""}
+      {showSettings && (
+        <div className={s.containerturnscore}>
+          <div className={s.turn}>
+            <h3>Turno:</h3>
+            <h4>{turn.message}</h4>
+            <div className={s.TfiReload}>
+              <MdRestartAlt onClick={() => RestartE(playersRoom)} />
+              <p>Reiniciar</p>
+            </div>
+            <div className={s.TfiReload}>
+              <RiLogoutCircleRLine
+                onClick={() => HandleReload(players, Swal, "")}
+              />
+              <p>Salir</p>
+            </div>
+          </div>
+          <div className={s.score}>
+            <h3>Puntaje:</h3>
+            <div className={s.scoremap}>
+              {Object.keys(userId).length
+                ? score &&
+                  Object.keys(score).map((user) => (
+                    <div key={user} className={s.scoremapitem}>
+                      {user}:{score[user]}
+                    </div>
+                  ))
+                : ""}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {showSettings && (
         <div className={s.containershotbutton}>
           <div className={s.containershot}>
-            <h3>Player shot</h3>
+            <h3>Tiro jugador</h3>
             {!gameOver && (
               <input
                 type="number"
                 readOnly={
                   players[socket?.id]?.user !== turn.user ? true : false
                 }
-                placeholder="choose the number from 1 to 100"
+                placeholder="Elige un número del 1 al 100"
                 value={playerShot}
                 onChange={(event) => handlePlayerShot(event)}
               />
@@ -244,53 +272,55 @@ const GameSettings = ({
                   )
                 }
               >
-                Send shot
+                Enviar tiro
               </button>
             )}
           </div>
         </div>
       )}
 
-      <div className={s.containertable}>
-        <h3>Score table</h3>
-        <table>
-          <thead>
-            <tr className={s.trtitle}>
-              <th>{playersQueue?.length ? "Shots" : ""}</th>
-              {playersQueue.map((playUs, index) => (
-                <th key={index}>{playUs}</th>
-              ))}
-              <th>{playersQueue?.length ? "Random" : ""}</th>
-            </tr>
-          </thead>
-          <tbody className={s.containeritems}>
-            {roundsStorage &&
-              roundsStorage.map((row, rowIndex) => (
-                <tr className={s.tritem} key={rowIndex}>
-                  <td className={s.randomnumber}>{rowIndex + 1}</td>
-                  {row.slice(0, -1).map((cell, cellIndex) => (
-                    <td
-                      key={cellIndex}
-                      className={
-                        cell === String(storedWinningNumber[rowIndex])
-                          ? s.truecolor
-                          : s.falsecolor
-                      }
-                    >
-                      {cell}
-                    </td>
-                  ))}
+      {showSettings && (
+        <div className={s.containertable}>
+          <h3>Tabla puntuación</h3>
+          <table>
+            <thead>
+              <tr className={s.trtitle}>
+                <th>{playersQueue?.length ? "Tiros" : ""}</th>
+                {playersQueue.map((playUs, index) => (
+                  <th key={index}>{playUs}</th>
+                ))}
+                <th>{playersQueue?.length ? "Aleatorio" : ""}</th>
+              </tr>
+            </thead>
+            <tbody className={s.containeritems}>
+              {roundsStorage &&
+                roundsStorage.map((row, rowIndex) => (
+                  <tr className={s.tritem} key={rowIndex}>
+                    <td className={s.randomnumber}>{rowIndex + 1}</td>
+                    {row.slice(0, -1).map((cell, cellIndex) => (
+                      <td
+                        key={cellIndex}
+                        className={
+                          cell === String(storedWinningNumber[rowIndex])
+                            ? s.truecolor
+                            : s.falsecolor
+                        }
+                      >
+                        {cell}
+                      </td>
+                    ))}
 
-                  <td className={s.randomnumber}>{row[row.length - 1]}</td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
-      </div>
+                    <td className={s.randomnumber}>{row[row.length - 1]}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
+      )}
 
       {showSettings && (
         <div className={s.containerchat}>
-          <h3>Game Chat</h3>
+          <h3>Chat de juego</h3>
           <div ref={messagesContainerRef} className={s.messages}>
             {storedUserChatMessage.map((msm, index) => (
               <div className={s.containermap} key={index}>
@@ -302,6 +332,7 @@ const GameSettings = ({
           <div className={s.containerinputchat}>
             <input
               type="text"
+              placeholder="Ingresa tu mensaje"
               value={userChatMessage}
               onChange={(event) => setUserChatMessage(event.target.value)}
             />
@@ -315,15 +346,17 @@ const GameSettings = ({
                 )
               }
             >
-              Send
+              Enviar
             </button>
           </div>
         </div>
       )}
 
-      <div className={s.messages}>
-        {ConnectionIncompleteMessage(connectionMessages)}
-        {UserDisconnectionMessage(disconnectedUsers)}
+      <div className={s.containermsm}>
+        <div className={s.connectionmsmerror}>
+          {ConnectionIncompleteMessage(connectionMessages)}
+          {UserDisconnectionMessage(disconnectedUsers)}
+        </div>
       </div>
     </div>
   );

@@ -16,3 +16,6 @@ export { default as RoundsE } from "./RoundsE";
 export { default as NumberOfPlayersE } from "./NumberOfPlayersE";
 export { default as RestartE } from "./RestartE";
 export { default as ChatMessageE } from "./ChatMessageE";
+export { default as NicknameE } from "./NicknameE";
+export { default as RoomE } from "./RoomE";
+export { default as ShotE } from "./ShotE";

@@ -25,6 +25,9 @@ export const PlayerProvider = ({ children }) => {
   const [numOfPlayers, setNumOfPlayers] = useState("");
   const [userChatMessage, setUserChatMessage] = useState("");
   const [storedUserChatMessage, setStoredUserChatMessage] = useState([]);
+  const [playersRoom, setPlayersRoom] = useState("");
+  const [userNameId, setUserNameId] = useState("");
+  const [playerShot, setPlayerShot] = useState("");
 
   return (
     <PlayerContext.Provider
@@ -67,6 +70,12 @@ export const PlayerProvider = ({ children }) => {
         setUserChatMessage,
         storedUserChatMessage,
         setStoredUserChatMessage,
+        playersRoom,
+        setPlayersRoom,
+        userNameId,
+        setUserNameId,
+        playerShot,
+        setPlayerShot,
       }}
     >
       {children}

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { usePlayer } from "../hooks/PlayerContext";
 import {
   UpdatePlayersE,
@@ -18,6 +17,9 @@ import {
   RoundsE,
   NumberOfPlayersE,
   ChatMessageE,
+  NicknameE,
+  RoomE,
+  ShotE,
 } from "../events";
 import {
   HandlerNewUser,
@@ -28,10 +30,6 @@ import {
 import GameSettings from "./GameSettings";
 
 const Game = () => {
-  const [userNameId, setUserNameId] = useState("");
-  const [playersRoom, setPlayersRoom] = useState("");
-  const [playerShot, setPlayerShot] = useState("");
-
   const {
     players,
     userId,
@@ -51,9 +49,21 @@ const Game = () => {
     setRounds,
     numOfPlayers,
     setNumOfPlayers,
+    userNameId,
+    setUserNameId,
+    playersRoom,
+    setPlayersRoom,
+    playerShot,
+    setPlayerShot,
   } = usePlayer();
 
   let connectedUsers = Object.keys(players).length;
+
+  NicknameE();
+
+  RoomE();
+
+  ShotE();
 
   UpdatePlayersE();
 
@@ -101,11 +111,13 @@ const Game = () => {
   ChatMessageE();
 
   const handleUserId = (event) => {
-    setUserNameId(event.target.value);
+    const lowercaseValue = event.target.value.toLowerCase();
+    setUserNameId(lowercaseValue);
   };
 
   const handleRoomName = (event) => {
-    setPlayersRoom(event.target.value);
+    const lowercaseValue = event.target.value.toLowerCase();
+    setPlayersRoom(lowercaseValue);
   };
 
   const handleNumberOfPlayers = (event) => {

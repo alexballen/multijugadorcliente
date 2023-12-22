@@ -65,6 +65,14 @@ const RestartTheGameE = (
             setStoredWinningNumber([]);
           }
         });
+      } else {
+        Swal.fire({
+          position: "center",
+          icon: "warning",
+          title: "No hay datos que reiniciar¡",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     });
   }, [roundsStorage]);
