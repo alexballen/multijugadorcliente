@@ -62,8 +62,7 @@ export const shotValidator = (input) => {
   } else {
     const num = parseInt(input, 10);
     if (num < 1 || num > 100) {
-      errors.shot =
-        "El valor debe estar entre 2 y 15 para la cantidad de jugadores";
+      errors.shot = "El valor del tiro debe estar entre 1 y 100";
     }
   }
 
