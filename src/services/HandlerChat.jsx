@@ -4,13 +4,15 @@ const HandlerChat = (
   playersRoom,
   userNameId,
   userChatMessage,
-  setUserChatMessage
+  setUserChatMessage,
+  chatTimestamp
 ) => {
   if (userChatMessage.length > 0) {
     socket.emit("chat", {
       room: playersRoom,
       user: userNameId,
       message: userChatMessage,
+      timestamp: chatTimestamp,
     });
     setUserChatMessage("");
   }

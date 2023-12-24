@@ -1,9 +1,9 @@
 import socket from "../socketSetup";
 
-const HandlerNewUser = (idUser, room, numOfPlayers, rounds) => {
+const HandlerNewUser = (userNameId, playersRoom, numOfPlayers, rounds) => {
   const idUserAndRoom = {
-    idUser,
-    room,
+    idUser: userNameId,
+    room: playersRoom,
     numOfPlayers,
     rounds,
   };

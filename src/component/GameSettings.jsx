@@ -15,6 +15,12 @@ import { TfiReload } from "react-icons/tfi";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { MdRestartAlt } from "react-icons/md";
 import { GoPlay } from "react-icons/go";
+import {
+  aliasValidator,
+  roomValidator,
+  playersValidator,
+  shotValidator,
+} from "../services/Validator";
 
 const GameSettings = ({
   connectionMessages,
@@ -51,6 +57,11 @@ const GameSettings = ({
   const [gameOver, setGameOver] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const messagesContainerRef = useRef(null);
+  const [errorAlias, setErrorAlias] = useState({});
+  const [errorRoom, setErrorRoom] = useState({});
+  const [errorPlayers, setErrorPlayers] = useState({});
+  const [errorShot, setErrorShot] = useState({});
+  const [chatTimestamp, setChatTimestamp] = useState("");
 
   useEffect(() => {
     if (Object.keys(players).length > 0) {
@@ -126,6 +137,39 @@ const GameSettings = ({
     }
   }, [storedUserChatMessage]);
 
+  useEffect(() => {
+    setErrorAlias(aliasValidator(userNameId));
+  }, [userNameId, setErrorAlias]);
+
+  useEffect(() => {
+    setErrorRoom(roomValidator(playersRoom));
+  }, [playersRoom, setErrorRoom]);
+
+  useEffect(() => {
+    setErrorPlayers(playersValidator(numOfPlayers));
+  }, [numOfPlayers, setErrorPlayers]);
+
+  useEffect(() => {
+    setErrorShot(shotValidator(playerShot));
+  }, [playerShot, setErrorShot]);
+
+  const getCurrentTime = () => {
+    const now = new Date();
+    const options = {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+      timeZone: "America/Bogota",
+    };
+    const formattedTime = new Intl.DateTimeFormat("es-CO", options).format(now);
+    return formattedTime;
+  };
+
+  useEffect(() => {
+    const currentTime = getCurrentTime();
+    setChatTimestamp(currentTime);
+  }, [userChatMessage.length]);
+
   let errorMessage = connectionErrorMessage.message;
 
   return (
@@ -147,6 +191,11 @@ const GameSettings = ({
               placeholder="Ingresa tu alias"
               onChange={(event) => handleUserId(event)}
             />
+            {errorAlias.alias && (
+              <h4>
+                <small>{errorAlias.alias}</small>
+              </h4>
+            )}
           </div>
           <div className={s.margindivs}>
             <h3>Sala</h3>
@@ -157,6 +206,11 @@ const GameSettings = ({
               placeholder="Ingresa sala de juego"
               onChange={(event) => handleRoomName(event)}
             />
+            {errorRoom.room && (
+              <h4>
+                <small>{errorRoom.room}</small>
+              </h4>
+            )}
           </div>
           <div className={s.margindivs}>
             <h3>Jugadores</h3>
@@ -167,6 +221,11 @@ const GameSettings = ({
               placeholder="Ingrese el número de jugadores por juego"
               onChange={(event) => handleNumberOfPlayers(event)}
             />
+            {errorPlayers.players && (
+              <h4>
+                <small>{errorPlayers.players}</small>
+              </h4>
+            )}
           </div>
           <div className={s.margindivs}>
             <h3>Rondas</h3>
@@ -205,18 +264,28 @@ const GameSettings = ({
                 <p>Recargar</p>
               </div>
               <div className={s.containergoplay}>
-                <GoPlay
-                  className={s.goplay}
-                  onClick={() =>
-                    HandlerNewUser(
-                      userNameId,
-                      playersRoom,
-                      numOfPlayers,
-                      rounds
-                    )
+                <button
+                  disabled={
+                    Object.keys(errorAlias).length < 1 &&
+                    Object.keys(errorRoom).length < 1 &&
+                    Object.keys(errorPlayers).length < 1
+                      ? false
+                      : true
                   }
-                />
-                <p>Iniciar</p>
+                >
+                  <GoPlay
+                    className={s.goplay}
+                    onClick={() =>
+                      HandlerNewUser(
+                        userNameId,
+                        playersRoom,
+                        numOfPlayers,
+                        rounds
+                      )
+                    }
+                  />
+                  <p>Iniciar</p>
+                </button>
               </div>
             </div>
           </div>
@@ -236,6 +305,11 @@ const GameSettings = ({
               placeholder="Ingresa tu alias"
               onChange={(event) => handleUserId(event)}
             />
+            {errorAlias.alias && (
+              <h4>
+                <small>{errorAlias.alias}</small>
+              </h4>
+            )}
           </div>
           <div className={s.margindivs}>
             <h3>Sala</h3>
@@ -246,15 +320,29 @@ const GameSettings = ({
               placeholder="Ingresa sala de juego"
               onChange={(event) => handleRoomName(event)}
             />
+            {errorRoom.room && (
+              <h4>
+                <small>{errorRoom.room}</small>
+              </h4>
+            )}
           </div>
           <div className={s.containergoplay}>
-            <GoPlay
-              className={s.goplay}
-              onClick={() =>
-                HandlerNewUser(userNameId, playersRoom, numOfPlayers, rounds)
+            <button
+              disabled={
+                Object.keys(errorAlias).length < 1 &&
+                Object.keys(errorRoom).length < 1
+                  ? false
+                  : true
               }
-            />
-            <p>Conectar</p>
+            >
+              <GoPlay
+                className={s.goplay}
+                onClick={() =>
+                  HandlerNewUser(userNameId, playersRoom, numOfPlayers, rounds)
+                }
+              />
+              <p>Iniciar</p>
+            </button>
           </div>
           <div className={s.connectionmsm}>{errorMessage}</div>
         </div>
@@ -307,10 +395,15 @@ const GameSettings = ({
                 onChange={(event) => handlePlayerShot(event)}
               />
             )}
+            {errorShot.shot && (
+              <h4>
+                <small>{errorShot.shot}</small>
+              </h4>
+            )}
           </div>
 
           <div className={s.containerbutton}>
-            {!gameOver && (
+            {!gameOver && Object.keys(errorShot).length < 1 && (
               <button
                 disabled={
                   players[socket?.id]?.user !== turn?.user ? true : false
@@ -379,7 +472,10 @@ const GameSettings = ({
             {storedUserChatMessage?.map((msm, index) => (
               <div className={s.containermap} key={index}>
                 <span className={s.userName}>{msm.user}:</span>
-                <span className={s.messageText}>{msm.message}</span>
+                <div className={s.containertexttime}>
+                  <span className={s.messageText}>{msm.message}</span>
+                  <span className={s.messageTime}>{msm.timestamp}</span>
+                </div>
               </div>
             ))}
           </div>
@@ -396,7 +492,8 @@ const GameSettings = ({
                   playersRoom,
                   userNameId,
                   userChatMessage,
-                  setUserChatMessage
+                  setUserChatMessage,
+                  chatTimestamp
                 )
               }
             >

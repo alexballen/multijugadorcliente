@@ -63,11 +63,25 @@
   margin: 5px;
 }
 
+.margindivs h4 {
+  width: 350px;
+  text-align: center;
+  color: red;
+}
+
 .containergoplay {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+/* border: 'none', padding: 0, margin: 0, background: 'none' */
+.containergoplay button {
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  background: none;
 }
 
 .containergoplay p {
@@ -143,6 +157,12 @@
 .containershotbutton h3 {
   width: 350px;
   text-align: center;
+}
+
+.containershotbutton h4 {
+  width: 350px;
+  text-align: center;
+  color: red;
 }
 
 .containershotbutton input {
@@ -278,12 +298,32 @@
   font-size: 110%;
 }
 
+.containertexttime {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
 .messageText {
   background-color: rgb(183, 206, 233);
-  padding: 5px;
-  margin: 5px;
-  border-radius: 10px;
+  border-radius: 8px;
+  padding: 2px;
   font-size: 110%;
+  margin-left: 5px;
+}
+
+.messageTime {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  font-size: 12px;
+  padding: 2px;
+  color: white;
+  margin-right: 5px;
+  margin-top: 5px;
 }
 
 .containerinputchat {
@@ -349,11 +389,19 @@
     width: 320px;
   }
 
+  .margindivs h4 {
+    width: 320px;
+  }
+
   .buttonselect {
     width: 320px;
   }
 
   .containershotbutton h3 {
+    width: 320px;
+  }
+
+  .containershotbutton h4 {
     width: 320px;
   }
 
@@ -371,11 +419,19 @@
     width: 280px;
   }
 
+  .margindivs h4 {
+    width: 280px;
+  }
+
   .buttonselect {
     width: 280px;
   }
 
   .containershotbutton h3 {
+    width: 280px;
+  }
+
+  .containershotbutton h4 {
     width: 280px;
   }
 
@@ -401,11 +457,19 @@
     width: 250px;
   }
 
+  .margindivs h4 {
+    width: 250px;
+  }
+
   .buttonselect {
     width: 250px;
   }
 
   .containershotbutton h3 {
+    width: 250px;
+  }
+
+  .containershotbutton h4 {
     width: 250px;
   }
 
