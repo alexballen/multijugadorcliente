@@ -53,10 +53,12 @@ const GameSettings = ({
     userChatMessage,
     setUserChatMessage,
     storedUserChatMessage,
+    setRoundsStorage,
+    setStoredWinningNumber,
   } = usePlayer();
+  const messagesContainerRef = useRef(null);
   const [gameOver, setGameOver] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const messagesContainerRef = useRef(null);
   const [errorAlias, setErrorAlias] = useState({});
   const [errorRoom, setErrorRoom] = useState({});
   const [errorPlayers, setErrorPlayers] = useState({});
@@ -120,7 +122,7 @@ const GameSettings = ({
         setGameOver(false);
       }
     }
-  }, [rounds, roundsStorage]);
+  }, [rounds, roundsStorage, connectionMessages?.connected]);
 
   useEffect(() => {
     if (connectionMessages.connected) {
@@ -169,6 +171,17 @@ const GameSettings = ({
     const currentTime = getCurrentTime();
     setChatTimestamp(currentTime);
   }, [userChatMessage.length]);
+
+  useEffect(() => {
+    socket.on("clearLocalStorage", (clear) => {
+      if (clear) {
+        localStorage.removeItem("rounds");
+        localStorage.removeItem("storingWinningNumbers");
+        setRoundsStorage([]);
+        setStoredWinningNumber([]);
+      }
+    });
+  }, []);
 
   let errorMessage = connectionErrorMessage.message;
 
@@ -230,38 +243,45 @@ const GameSettings = ({
           <div className={s.margindivs}>
             <h3>Rondas</h3>
             <div className={s.buttonselect}>
-              <select
-                value={rounds}
-                disabled={connectionMessages?.connected === true ? true : false}
-                onChange={(event) => handlerRoundsGame(event)}
-              >
-                <option disabled value="">
-                  Rondas
-                </option>
-                <option value="3">3 Rondas</option>
-                <option value="7">7 Rondas</option>
-                <option value="11">11 Rondas</option>
-                <option value="15">15 Rondas</option>
-                <option value="19">19 Rondas</option>
-                <option value="23">23 Rondas</option>
-                <option value="27">27 Rondas</option>
-                <option value="31">31 Rondas</option>
-              </select>
-              <div className={s.TfiReload}>
-                <TfiReload
-                  onClick={() =>
-                    HandleReload(
-                      players,
-                      Swal,
-                      "reload",
-                      userNameId,
-                      playersRoom,
-                      numOfPlayers,
-                      rounds
-                    )
+              <div className={s.select}>
+                <select
+                  value={rounds}
+                  disabled={
+                    connectionMessages?.connected === true ? true : false
                   }
-                />
-                <p>Recargar</p>
+                  onChange={(event) => handlerRoundsGame(event)}
+                >
+                  <option disabled value="">
+                    Rondas
+                  </option>
+                  <option value="3">3 Rondas</option>
+                  <option value="7">7 Rondas</option>
+                  <option value="11">11 Rondas</option>
+                  <option value="15">15 Rondas</option>
+                  <option value="19">19 Rondas</option>
+                  <option value="23">23 Rondas</option>
+                  <option value="27">27 Rondas</option>
+                  <option value="31">31 Rondas</option>
+                </select>
+              </div>
+              <div className={s.containerTfiReload}>
+                <button>
+                  <TfiReload
+                    className={s.tfireload}
+                    onClick={() =>
+                      HandleReload(
+                        players,
+                        Swal,
+                        "reload",
+                        userNameId,
+                        playersRoom,
+                        numOfPlayers,
+                        rounds
+                      )
+                    }
+                  />
+                  <p>Recargar</p>
+                </button>
               </div>
               <div className={s.containergoplay}>
                 <button
@@ -353,15 +373,23 @@ const GameSettings = ({
           <div className={s.turn}>
             <h3>Turno:</h3>
             <h4>{turn.message}</h4>
-            <div className={s.TfiReload}>
-              <MdRestartAlt onClick={() => RestartE(playersRoom)} />
-              <p>Reiniciar</p>
+            <div className={s.containerTfiReload}>
+              <button>
+                <MdRestartAlt
+                  className={s.tfireload}
+                  onClick={() => RestartE(playersRoom)}
+                />
+                <p>Reiniciar</p>
+              </button>
             </div>
-            <div className={s.TfiReload}>
-              <RiLogoutCircleRLine
-                onClick={() => HandleReload(players, Swal, "")}
-              />
-              <p>Salir</p>
+            <div className={s.containerTfiReload}>
+              <button>
+                <RiLogoutCircleRLine
+                  className={s.tfireload}
+                  onClick={() => HandleReload(players, Swal, "")}
+                />
+                <p>Salir</p>
+              </button>
             </div>
           </div>
           <div className={s.score}>
@@ -395,7 +423,7 @@ const GameSettings = ({
                 onChange={(event) => handlePlayerShot(event)}
               />
             )}
-            {errorShot.shot && (
+            {!gameOver && errorShot.shot && (
               <h4>
                 <small>{errorShot.shot}</small>
               </h4>
