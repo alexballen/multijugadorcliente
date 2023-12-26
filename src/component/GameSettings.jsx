@@ -65,6 +65,8 @@ const GameSettings = ({
   const [errorShot, setErrorShot] = useState({});
   const [chatTimestamp, setChatTimestamp] = useState("");
 
+  console.log("connectionMessages ->", connectionMessages);
+
   useEffect(() => {
     if (Object.keys(players).length > 0) {
       if (connectionMessages.message === "Conexion completa¡") {
@@ -541,7 +543,8 @@ const GameSettings = ({
       {
         <div className={s.containermsm}>
           <div className={s.connectionmsmerror}>
-            {ConnectionIncompleteMessage(connectionMessages?.message)}
+            {connectionMessages.message === "Conexion incompleta¡" &&
+              "Esperando que se conecten todos los jugadores..."}
           </div>
         </div>
       }
