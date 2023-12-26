@@ -114,9 +114,9 @@ const GameSettings = ({
     }
   }, [
     connectionMessages?.message,
-    /*  setConnectionMessages,
+    setConnectionMessages,
     setDisconnectedUsers,
-    players, */
+    players,
   ]);
 
   useEffect(() => {
@@ -187,9 +187,6 @@ const GameSettings = ({
       }
     });
   }, []);
-
-  console.log("connectionMessages.message ->", connectionMessages.message);
-  console.log("disconnectedUsers ->", disconnectedUsers);
 
   let errorMessage = connectionErrorMessage.message;
 
@@ -541,22 +538,22 @@ const GameSettings = ({
         </div>
       )}
 
-      {
+      {!showSettings && connectionMessages?.message && (
         <div className={s.containermsm}>
           <div className={s.connectionmsmerror}>
             {connectionMessages.message === "Conexion incompleta¡" &&
-              ConnectionIncompleteMessage()}
+              ConnectionIncompleteMessage(connectionMessages)}
           </div>
         </div>
-      }
+      )}
 
-      {
+      {!showSettings && disconnectedUsers && (
         <div className={s.containermsm}>
           <div className={s.connectionmsmerror}>
             {disconnectedUsers && UserDisconnectionMessage(disconnectedUsers)}
           </div>
         </div>
-      }
+      )}
     </div>
   );
 };

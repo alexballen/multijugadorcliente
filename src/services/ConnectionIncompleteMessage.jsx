@@ -1,7 +1,9 @@
-const ConnectionIncompleteMessage = () => {
+const ConnectionIncompleteMessage = (connectionMessages) => {
   const incompleteConnection =
     "Esperando que se conecten todos los jugadores...";
-  return incompleteConnection;
+  if (connectionMessages?.message) {
+    return incompleteConnection;
+  }
 };
 
 export default ConnectionIncompleteMessage;
