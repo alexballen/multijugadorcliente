@@ -9,7 +9,7 @@ const ConnectionErrorMessageE = () => {
     socket.on("connectionErrorMessage", (errorMessage) => {
       setConnectionErrorMessage(errorMessage);
     });
-  }, []);
+  }, [setConnectionErrorMessage]);
 
   return connectionErrorMessage;
 };

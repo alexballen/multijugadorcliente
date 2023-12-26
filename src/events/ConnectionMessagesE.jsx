@@ -9,7 +9,7 @@ const ConnectionMessagesE = () => {
     socket.on("connectionMessages", (connectionMessage) => {
       setConnectionMessages(connectionMessage);
     });
-  }, []);
+  }, [setConnectionMessages]);
 
   return connectionMessages;
 };

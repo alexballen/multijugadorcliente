@@ -9,7 +9,7 @@ const DisconnectedUsersE = () => {
     socket.on("disconnectedUsers", (disconnectedUser) => {
       setDisconnectedUsers(disconnectedUser);
     });
-  }, []);
+  }, [setDisconnectedUsers]);
 
   return disconnectedUsers;
 };
