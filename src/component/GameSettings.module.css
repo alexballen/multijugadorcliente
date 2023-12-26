@@ -1,5 +1,5 @@
 /* .miinput {
-  background-image: url("../images/f1.png");
+  background-image: url("../images/input.png");
 } */
 
 * {
@@ -14,8 +14,16 @@
 
 .title {
   width: 100%;
-  text-align: center;
+  display: flex;
+  justify-content: center;
   padding: 3px;
+  background-image: url("../images/f5.png");
+  color: rgb(14, 96, 123);
+}
+
+.title h1 {
+  border-radius: 10px;
+  padding: 2px;
 }
 
 .nickname {
@@ -26,6 +34,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 5px;
   width: 100%;
+  color: rgb(14, 96, 123);
 }
 
 .nicknametitle {
@@ -38,6 +47,8 @@
 
 .nickname input {
   width: 350px;
+  border-radius: 5px;
+  background-image: url("../images/input.png");
 }
 
 .buttonselect {
@@ -50,6 +61,7 @@
 .select {
   display: flex;
   align-items: center;
+  margin-left: 5px;
 }
 
 .select select {
@@ -98,6 +110,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-right: 5px;
 }
 
 .containergoplay button {
@@ -186,6 +199,8 @@
 
 .containershotbutton input {
   width: 350px;
+  border-radius: 5px;
+  background-image: url("../images/input.png");
 }
 
 .containerbutton {
@@ -359,6 +374,7 @@
   margin-right: 5px;
   border-radius: 5px;
   margin: 5px;
+  background-image: url("../images/input.png");
 }
 
 .containerinputchat button {
@@ -402,106 +418,182 @@
 
 @media (max-width: 400px) {
   .nickname h3 {
-    width: 320px;
+    width: 330px;
   }
 
   .nickname input {
-    width: 320px;
+    width: 330px;
   }
 
   .margindivs h4 {
-    width: 320px;
+    width: 330px;
   }
 
   .buttonselect {
-    width: 320px;
+    width: 330px;
   }
 
   .containershotbutton h3 {
-    width: 320px;
+    width: 330px;
   }
 
   .containershotbutton h4 {
-    width: 320px;
+    width: 330px;
   }
 
   .containershotbutton input {
-    width: 320px;
+    width: 330px;
   }
 }
 
 @media (max-width: 375px) {
   .nickname h3 {
-    width: 280px;
+    width: 320px;
   }
 
   .nickname input {
-    width: 280px;
+    width: 320px;
   }
 
   .margindivs h4 {
-    width: 280px;
+    width: 320px;
   }
 
   .buttonselect {
-    width: 280px;
+    width: 320px;
   }
 
   .containershotbutton h3 {
-    width: 280px;
+    width: 320px;
   }
 
   .containershotbutton h4 {
-    width: 280px;
+    width: 320px;
   }
 
   .containershotbutton input {
-    width: 280px;
+    width: 320px;
   }
 
   .connectionmsm {
-    width: 280px;
+    width: 320px;
   }
 
   .connectionmsmerror {
-    width: 280px;
+    width: 320px;
+  }
+}
+
+@media (max-width: 363px) {
+  .nickname h3 {
+    width: 300px;
+  }
+
+  .nickname input {
+    width: 300px;
+  }
+
+  .margindivs h4 {
+    width: 300px;
+  }
+
+  .buttonselect {
+    width: 300px;
+  }
+
+  .containershotbutton h3 {
+    width: 300px;
+  }
+
+  .containershotbutton h4 {
+    width: 300px;
+  }
+
+  .containershotbutton input {
+    width: 300px;
+  }
+
+  .connectionmsm {
+    width: 300px;
+  }
+
+  .connectionmsmerror {
+    width: 300px;
+  }
+}
+
+@media (max-width: 342px) {
+  .nickname h3 {
+    width: 285px;
+  }
+
+  .nickname input {
+    width: 285px;
+  }
+
+  .margindivs h4 {
+    width: 285px;
+  }
+
+  .buttonselect {
+    width: 285px;
+  }
+
+  .containershotbutton h3 {
+    width: 285px;
+  }
+
+  .containershotbutton h4 {
+    width: 285px;
+  }
+
+  .containershotbutton input {
+    width: 285px;
+  }
+
+  .connectionmsm {
+    width: 285px;
+  }
+
+  .connectionmsmerror {
+    width: 285px;
   }
 }
 
 @media (max-width: 320px) {
   .nickname h3 {
-    width: 250px;
+    width: 280px;
   }
 
   .nickname input {
-    width: 250px;
+    width: 280px;
   }
 
   .margindivs h4 {
-    width: 250px;
+    width: 280px;
   }
 
   .buttonselect {
-    width: 250px;
+    width: 280px;
   }
 
   .containershotbutton h3 {
-    width: 250px;
+    width: 280px;
   }
 
   .containershotbutton h4 {
-    width: 250px;
+    width: 280px;
   }
 
   .containershotbutton input {
-    width: 250px;
+    width: 280px;
   }
 
   .connectionmsm {
-    width: 250px;
+    width: 280px;
   }
 
   .connectionmsmerror {
-    width: 250px;
+    width: 280px;
   }
 }
