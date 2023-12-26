@@ -64,8 +64,6 @@ const GameSettings = ({
   const [errorShot, setErrorShot] = useState({});
   const [chatTimestamp, setChatTimestamp] = useState("");
 
-  console.log("connectionMessages ->", connectionMessages);
-
   useEffect(() => {
     if (Object.keys(players).length > 0) {
       if (connectionMessages.message === "Conexion completa¡") {
