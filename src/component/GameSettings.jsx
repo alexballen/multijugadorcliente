@@ -92,10 +92,10 @@ const GameSettings = ({
           showConfirmButton: false,
           timer: 1500,
         });
-        setConnectionMessages((setMessage) => ({
+        /*  setConnectionMessages((setMessage) => ({
           ...setMessage,
           message: "",
-        }));
+        })); */
       }
 
       if (
@@ -544,6 +544,7 @@ const GameSettings = ({
         <div className={s.containermsm}>
           <div className={s.connectionmsmerror}>
             {!connectionMessages.connected &&
+              connectionMessages.message === "Conexion incompleta¡" &&
               "Esperando que se conecten todos los jugadores..."}
           </div>
         </div>
