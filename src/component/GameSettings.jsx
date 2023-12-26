@@ -90,10 +90,10 @@ const GameSettings = ({
           showConfirmButton: false,
           timer: 1500,
         });
-        /* setConnectionMessages((setMessage) => ({
+        setConnectionMessages((setMessage) => ({
           ...setMessage,
           message: "",
-        })); */
+        }));
       }
 
       if (
