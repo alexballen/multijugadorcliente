@@ -114,9 +114,9 @@ const GameSettings = ({
     }
   }, [
     connectionMessages?.message,
-    setConnectionMessages,
+    /*  setConnectionMessages,
     setDisconnectedUsers,
-    players,
+    players, */
   ]);
 
   useEffect(() => {
