@@ -1,7 +1,8 @@
 const ConnectionIncompleteMessage = (connectionMessages) => {
+  console.log("connectionMessages ->", connectionMessages);
   const incompleteConnection =
     "Esperando que se conecten todos los jugadores...";
-  if (connectionMessages?.message) {
+  if (connectionMessages === "Conexion incompleta¡") {
     return incompleteConnection;
   }
 };
