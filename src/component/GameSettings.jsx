@@ -188,6 +188,9 @@ const GameSettings = ({
     });
   }, []);
 
+  console.log("connectionMessages.message ->", connectionMessages.message);
+  console.log("disconnectedUsers ->", disconnectedUsers);
+
   let errorMessage = connectionErrorMessage.message;
 
   return (
