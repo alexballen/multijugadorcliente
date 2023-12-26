@@ -538,22 +538,22 @@ const GameSettings = ({
         </div>
       )}
 
-      {connectionMessages?.message && (
+      {
         <div className={s.containermsm}>
           <div className={s.connectionmsmerror}>
             {connectionMessages.message === "Conexion incompleta¡" &&
               ConnectionIncompleteMessage()}
           </div>
         </div>
-      )}
+      }
 
-      {disconnectedUsers && (
+      {
         <div className={s.containermsm}>
           <div className={s.connectionmsmerror}>
             {disconnectedUsers && UserDisconnectionMessage(disconnectedUsers)}
           </div>
         </div>
-      )}
+      }
     </div>
   );
 };
