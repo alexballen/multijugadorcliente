@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import socket from "../socketSetup";
 import { RestartE } from "../events";
 import {
-  ConnectionIncompleteMessage,
   UserDisconnectionMessage,
   HandlerChat,
   HandleReload,
@@ -92,10 +91,6 @@ const GameSettings = ({
           showConfirmButton: false,
           timer: 1500,
         });
-        /*  setConnectionMessages((setMessage) => ({
-          ...setMessage,
-          message: "",
-        })); */
       }
 
       if (
@@ -540,15 +535,14 @@ const GameSettings = ({
         </div>
       )}
 
-      {
-        <div className={s.containermsm}>
-          <div className={s.connectionmsmerror}>
-            {!connectionMessages.connected &&
-              connectionMessages.message === "Conexion incompleta¡" &&
-              "Esperando que se conecten todos los jugadores..."}
+      {!connectionMessages.connected &&
+        connectionMessages.message === "Conexion incompleta¡" && (
+          <div className={s.containermsm}>
+            <div className={s.connectionmsmerror}>
+              <p>Esperando que se conecten todos los jugadores...</p>
+            </div>
           </div>
-        </div>
-      }
+        )}
 
       {!showSettings && disconnectedUsers && (
         <div className={s.containermsm}>
