@@ -112,7 +112,12 @@ const GameSettings = ({
         }));
       }
     }
-  }, [connectionMessages?.message]);
+  }, [
+    connectionMessages?.message,
+    setConnectionMessages,
+    setDisconnectedUsers,
+    players,
+  ]);
 
   useEffect(() => {
     if (connectionMessages?.connected) {
@@ -364,7 +369,9 @@ const GameSettings = ({
               <p>Iniciar</p>
             </button>
           </div>
-          <div className={s.connectionmsm}>{errorMessage}</div>
+          {errorMessage && (
+            <div className={s.connectionmsm}>{errorMessage}</div>
+          )}
         </div>
       )}
 
@@ -531,12 +538,22 @@ const GameSettings = ({
         </div>
       )}
 
-      <div className={s.containermsm}>
-        <div className={s.connectionmsmerror}>
-          {ConnectionIncompleteMessage(connectionMessages)}
-          {UserDisconnectionMessage(disconnectedUsers)}
+      {!showSettings && connectionMessages?.message && (
+        <div className={s.containermsm}>
+          <div className={s.connectionmsmerror}>
+            {connectionMessages.message === "Conexion incompleta¡" &&
+              ConnectionIncompleteMessage()}
+          </div>
         </div>
-      </div>
+      )}
+
+      {!showSettings && disconnectedUsers && (
+        <div className={s.containermsm}>
+          <div className={s.connectionmsmerror}>
+            {disconnectedUsers && UserDisconnectionMessage(disconnectedUsers)}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
