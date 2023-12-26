@@ -543,7 +543,7 @@ const GameSettings = ({
       {
         <div className={s.containermsm}>
           <div className={s.connectionmsmerror}>
-            {connectionMessages.message === "Conexion incompleta¡" &&
+            {!connectionMessages.connected &&
               "Esperando que se conecten todos los jugadores..."}
           </div>
         </div>
