@@ -173,10 +173,10 @@ const GameSettings = ({
   }, [userChatMessage.length]);
 
   useEffect(() => {
-    socket.on("clearLocalStorage", (clear) => {
+    socket.on("clearLocalStorageNn", (clear) => {
       if (clear) {
-        localStorage.removeItem("rounds");
-        localStorage.removeItem("storingWinningNumbers");
+        localStorage.removeItem("roundsNn");
+        localStorage.removeItem("storingWinningNumbersNn");
         setRoundsStorage([]);
         setStoredWinningNumber([]);
       }
