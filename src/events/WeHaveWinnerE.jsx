@@ -12,14 +12,14 @@ const WeHaveWinnerE = (playersRoom) => {
   }, [playersRoom]);
 
   useEffect(() => {
-    socket.on("weHaveWinner", (weHaveWinner) => {
+    socket.on("weHaveWinnerNn", (weHaveWinner) => {
       const dataWeHaveWinner = {
         winnerOk: true,
         room: roomRef.current,
       };
 
       if (weHaveWinner) {
-        socket.emit("winnerData", dataWeHaveWinner);
+        socket.emit("winnerDataNn", dataWeHaveWinner);
         setThereIsAWinner(weHaveWinner);
       }
     });

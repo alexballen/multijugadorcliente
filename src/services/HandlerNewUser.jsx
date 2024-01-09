@@ -8,7 +8,7 @@ const HandlerNewUser = (userNameId, playersRoom, numOfPlayers, rounds) => {
     rounds,
   };
 
-  socket.emit("newUser", idUserAndRoom);
+  socket.emit("newUserNn", idUserAndRoom);
 };
 
 export default HandlerNewUser;

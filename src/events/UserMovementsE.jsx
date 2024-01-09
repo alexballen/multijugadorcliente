@@ -6,7 +6,7 @@ const UserMovementsE = () => {
   const { storedRounds, setStoredRounds } = usePlayer();
 
   useEffect(() => {
-    socket.on("userMovements", (userMovements) => {
+    socket.on("userMovementsNn", (userMovements) => {
       setStoredRounds(userMovements);
     });
   }, []);

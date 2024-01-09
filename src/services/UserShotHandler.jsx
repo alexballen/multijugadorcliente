@@ -17,7 +17,7 @@ const UserShotHandler = (
         user: userId.userId,
         room: playersRoom,
       };
-      socket.emit("motion", dataMotion);
+      socket.emit("motionNn", dataMotion);
 
       const dataNextTurn = {
         next: true,
@@ -25,7 +25,7 @@ const UserShotHandler = (
       };
 
       if (playerShot.length > 0) {
-        socket.emit("nextTurn", dataNextTurn);
+        socket.emit("nextTurnNn", dataNextTurn);
       }
 
       setPlayerShot("");

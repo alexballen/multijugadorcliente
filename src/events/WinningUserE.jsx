@@ -13,7 +13,7 @@ const WinningUserE = (playersRoom) => {
   }, [playersRoom]);
 
   useEffect(() => {
-    socket.on("winningUser", (winnerData) => {
+    socket.on("winningUserNn", (winnerData) => {
       // Comprobar si hay un número aleatorio en los datos del servidor
       const randomNumberInData = winnerData.find(
         (number) => number.randomNumber
@@ -36,7 +36,7 @@ const WinningUserE = (playersRoom) => {
         room: roomRef.current,
       };
 
-      socket.emit("nextTurn", dataNextTurn);
+      socket.emit("nextTurnNn", dataNextTurn);
     });
   }, []);
 

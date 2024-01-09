@@ -8,7 +8,7 @@ const HandlerChat = (
   chatTimestamp
 ) => {
   if (userChatMessage.length > 0) {
-    socket.emit("chat", {
+    socket.emit("chatNn", {
       room: playersRoom,
       user: userNameId,
       message: userChatMessage,
