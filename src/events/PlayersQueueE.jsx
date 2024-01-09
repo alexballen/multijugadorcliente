@@ -6,7 +6,7 @@ const PlayersQueueE = () => {
   const { playersQueue, setPlayersQueue } = usePlayer();
 
   useEffect(() => {
-    socket.on("playersQueue", (playersQueue) => {
+    socket.on("playersQueueNn", (playersQueue) => {
       setPlayersQueue(playersQueue);
     });
   }, []);

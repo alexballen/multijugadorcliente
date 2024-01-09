@@ -6,7 +6,7 @@ const ChatMessageE = () => {
   const { storedUserChatMessage, setStoredUserChatMessage } = usePlayer();
 
   useEffect(() => {
-    socket.on("chatMessage", (chatMessage) => {
+    socket.on("chatMessageNn", (chatMessage) => {
       setStoredUserChatMessage(chatMessage);
     });
   }, []);

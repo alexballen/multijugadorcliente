@@ -6,7 +6,7 @@ const ConnectionErrorMessageE = () => {
   const { connectionErrorMessage, setConnectionErrorMessage } = usePlayer();
 
   useEffect(() => {
-    socket.on("connectionErrorMessage", (errorMessage) => {
+    socket.on("connectionErrorMessageNn", (errorMessage) => {
       setConnectionErrorMessage(errorMessage);
     });
   }, [setConnectionErrorMessage]);

@@ -6,7 +6,7 @@ const DisconnectedUsersE = () => {
   const { disconnectedUsers, setDisconnectedUsers } = usePlayer();
 
   useEffect(() => {
-    socket.on("disconnectedUsers", (disconnectedUser) => {
+    socket.on("disconnectedUsersNn", (disconnectedUser) => {
       setDisconnectedUsers(disconnectedUser);
     });
   }, [setDisconnectedUsers]);

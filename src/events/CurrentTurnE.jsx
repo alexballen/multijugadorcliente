@@ -6,7 +6,7 @@ const CurrentTurnE = () => {
   const { turn, setTurn } = usePlayer();
 
   useEffect(() => {
-    socket.on("currentTurn", (currentTurn) => {
+    socket.on("currentTurnNn", (currentTurn) => {
       setTurn(currentTurn);
     });
   }, []);

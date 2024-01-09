@@ -6,7 +6,7 @@ const NicknameE = () => {
   const { userNameId, setUserNameId } = usePlayer();
 
   useEffect(() => {
-    socket.on("nickname", (nickname) => {
+    socket.on("nicknameNn", (nickname) => {
       setUserNameId(nickname);
     });
   }, []);

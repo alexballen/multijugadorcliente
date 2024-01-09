@@ -6,7 +6,7 @@ const NumberOfPlayersE = () => {
   const { numOfPlayers, setNumOfPlayers } = usePlayer();
 
   useEffect(() => {
-    socket.on("numberOfPlayers", (numberPlayersNew) => {
+    socket.on("numberOfPlayersNn", (numberPlayersNew) => {
       const stringNum = String(numberPlayersNew);
       setNumOfPlayers(stringNum);
     });

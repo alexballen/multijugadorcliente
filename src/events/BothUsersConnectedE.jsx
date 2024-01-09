@@ -17,14 +17,14 @@ const BothUsersConnectedE = (playersRoom) => {
   }, [playersRoom]);
 
   useEffect(() => {
-    socket.on("bothUsersConnected", (bothUsersConnected) => {
+    socket.on("bothUsersConnectedNn", (bothUsersConnected) => {
       const { connected } = bothUsersConnected;
       if (connected) {
         const connectionData = {
           connected: true,
           room: roomRef.current,
         };
-        socket.emit("successfulConnection", connectionData);
+        socket.emit("successfulConnectionNn", connectionData);
         setBothUsersConnected(true);
         setConnectionMessages(bothUsersConnected);
       } else {
@@ -32,7 +32,7 @@ const BothUsersConnectedE = (playersRoom) => {
           connected: false,
           room: roomRef.current,
         };
-        socket.emit("successfulConnection", connectionData);
+        socket.emit("successfulConnectionNn", connectionData);
         setBothUsersConnected(false);
         setConnectionMessages(bothUsersConnected);
       }

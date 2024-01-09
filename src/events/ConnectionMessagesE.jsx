@@ -6,7 +6,7 @@ const ConnectionMessagesE = () => {
   const { connectionMessages, setConnectionMessages } = usePlayer();
 
   useEffect(() => {
-    socket.on("connectionMessages", (connectionMessage) => {
+    socket.on("connectionMessagesNn", (connectionMessage) => {
       setConnectionMessages(connectionMessage);
     });
   }, [setConnectionMessages]);
