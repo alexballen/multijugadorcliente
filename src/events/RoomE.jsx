@@ -6,7 +6,7 @@ const RoomE = () => {
   const { playersRoom, setPlayersRoom } = usePlayer();
 
   useEffect(() => {
-    socket.on("room", (room) => {
+    socket.on("roomNn", (room) => {
       setPlayersRoom(room);
     });
   }, []);

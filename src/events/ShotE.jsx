@@ -6,7 +6,7 @@ const ShotE = () => {
   const { playerShot, setPlayerShot } = usePlayer();
 
   useEffect(() => {
-    socket.on("shot", (shot) => {
+    socket.on("shotNn", (shot) => {
       setPlayerShot(shot);
     });
   }, []);

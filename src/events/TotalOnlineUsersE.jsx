@@ -7,7 +7,7 @@ const TotalOnlineUsers = (connectedUsers, playersRoom) => {
     room: playersRoom,
   };
   useEffect(() => {
-    socket.emit("totalOnlineUsers", onlineUsersData);
+    socket.emit("totalOnlineUsersNn", onlineUsersData);
   }, [connectedUsers]);
 };
 

@@ -20,7 +20,7 @@ const RestartTheGameE = (
   }, [storedWinningNumber]);
 
   useEffect(() => {
-    socket.on("confirmRestart", (confirmRestart) => {
+    socket.on("confirmRestartNn", (confirmRestart) => {
       const { confirm } = confirmRestart;
 
       if (storageRef.current.length > 0 && confirm) {
@@ -54,7 +54,7 @@ const RestartTheGameE = (
           },
         }).then((result) => {
           if (result.dismiss === Swal.DismissReason.timer) {
-            socket.emit("restartTheGame", {
+            socket.emit("restartTheGameNn", {
               confirm: true,
               room: playersRoom,
             });

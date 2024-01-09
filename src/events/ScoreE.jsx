@@ -5,7 +5,7 @@ import socket from "../socketSetup";
 const ScoreE = () => {
   const { score, setScore } = usePlayer();
   useEffect(() => {
-    socket.on("score", (scoreUser) => {
+    socket.on("scoreNn", (scoreUser) => {
       setScore(scoreUser);
     });
   }, []);

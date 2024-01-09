@@ -6,12 +6,12 @@ const UserId = () => {
   const { userId, setUserId } = usePlayer();
 
   useEffect(() => {
-    socket.on("userId", (userNew) => {
+    socket.on("userIdNn", (userNew) => {
       setUserId(userNew);
     });
 
     return () => {
-      socket.off("userId");
+      socket.off("userIdNn");
     };
   }, []);
 

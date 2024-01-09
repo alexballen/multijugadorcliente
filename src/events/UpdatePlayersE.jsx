@@ -7,7 +7,7 @@ const UpdatePlayersE = () => {
   const { players, setPlayers } = usePlayer();
 
   useEffect(() => {
-    socket.on("updatePlayers", (userNew) => {
+    socket.on("updatePlayersNn", (userNew) => {
       setPlayers((prevPlayers) => UpdatePlayers(prevPlayers, userNew));
     });
   }, []);

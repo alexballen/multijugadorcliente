@@ -6,7 +6,7 @@ const RoundsE = () => {
   const { rounds, setRounds } = usePlayer();
 
   useEffect(() => {
-    socket.on("rounds", (roundsNew) => {
+    socket.on("roundsNn", (roundsNew) => {
       setRounds(roundsNew);
     });
   }, [rounds]);
