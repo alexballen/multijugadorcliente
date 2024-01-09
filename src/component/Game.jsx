@@ -83,13 +83,13 @@ const Game = () => {
 
   CurrentTurnE();
 
-  WeHaveWinnerE(playersRoom);
-
-  WinningUserE(playersRoom);
-
   ScoreE();
 
   UserMovementsE();
+
+  WeHaveWinnerE(playersRoom);
+
+  WinningUserE(playersRoom);
 
   RoundsStorage(storedRounds);
 
