@@ -414,6 +414,10 @@
   .containertable {
     max-height: 200px;
   }
+
+  .title {
+    background-size: cover;
+  }
 }
 
 @media (max-width: 400px) {

@@ -19,6 +19,7 @@ const BothUsersConnectedE = (playersRoom) => {
   useEffect(() => {
     socket.on("bothUsersConnectedNn", (bothUsersConnected) => {
       const { connected } = bothUsersConnected;
+
       if (connected) {
         const connectionData = {
           connected: true,

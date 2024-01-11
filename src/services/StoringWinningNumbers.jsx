@@ -6,7 +6,7 @@ const StoringWinningNumbers = (storedRounds, winningUsers) => {
 
   useEffect(() => {
     const storedWinner = JSON.parse(
-      localStorage.getItem("storingWinningNumbers")
+      localStorage.getItem("storingWinningNumbersNn")
     );
     if (storedWinner) {
       setStoredWinningNumber(storedWinner);
@@ -25,7 +25,7 @@ const StoringWinningNumbers = (storedRounds, winningUsers) => {
   useEffect(() => {
     if (storedWinningNumber.length > 0) {
       localStorage.setItem(
-        "storingWinningNumbers",
+        "storingWinningNumbersNn",
         JSON.stringify(storedWinningNumber)
       );
     }

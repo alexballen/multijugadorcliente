@@ -6,7 +6,7 @@ const RoundsStorage = (storedRounds) => {
 
   useEffect(() => {
     const storedRoundsFromLocalStorage = JSON.parse(
-      localStorage.getItem("rounds")
+      localStorage.getItem("roundsNn")
     );
     if (storedRoundsFromLocalStorage) {
       setRoundsStorage(storedRoundsFromLocalStorage);
@@ -26,7 +26,7 @@ const RoundsStorage = (storedRounds) => {
 
   useEffect(() => {
     if (roundsStorage.length > 0) {
-      localStorage.setItem("rounds", JSON.stringify(roundsStorage));
+      localStorage.setItem("roundsNn", JSON.stringify(roundsStorage));
     }
   }, [roundsStorage]);
 

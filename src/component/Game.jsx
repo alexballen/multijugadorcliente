@@ -20,41 +20,51 @@ import {
   NicknameE,
   RoomE,
   ShotE,
+  ClearStorageE,
 } from "../events";
 import {
-  HandlerNewUser,
-  UserShotHandler,
   RoundsStorage,
   StoringWinningNumbers,
+  SetErrorAlias,
+  SetErrorRoom,
+  SetErrorPlayers,
+  SetErrorShot,
+  SetGameOver,
+  SetShowSettings,
+  SetConnectionMessages,
 } from "../services";
 import GameSettings from "./GameSettings";
+import {
+  aliasValidator,
+  roomValidator,
+  playersValidator,
+  shotValidator,
+} from "../services/Validator";
 
 const Game = () => {
   const {
     players,
-    userId,
-    playersQueue,
-    turn,
     winningUsers,
     score,
     connectionMessages,
-    disconnectedUsers,
     storedRounds,
     roundsStorage,
     setRoundsStorage,
     storedWinningNumber,
     setStoredWinningNumber,
-    connectionErrorMessage,
     rounds,
-    setRounds,
     numOfPlayers,
-    setNumOfPlayers,
     userNameId,
-    setUserNameId,
     playersRoom,
-    setPlayersRoom,
     playerShot,
-    setPlayerShot,
+    setErrorAlias,
+    setErrorRoom,
+    setErrorPlayers,
+    setErrorShot,
+    setGameOver,
+    setShowSettings,
+    setConnectionMessages,
+    setDisconnectedUsers,
   } = usePlayer();
 
   let connectedUsers = Object.keys(players).length;
@@ -110,55 +120,30 @@ const Game = () => {
 
   ChatMessageE();
 
-  const handleUserId = (event) => {
-    const lowercaseValue = event.target.value.toLowerCase();
-    setUserNameId(lowercaseValue);
-  };
+  ClearStorageE();
 
-  const handleRoomName = (event) => {
-    const lowercaseValue = event.target.value.toLowerCase();
-    setPlayersRoom(lowercaseValue);
-  };
+  SetErrorAlias(setErrorAlias, aliasValidator, userNameId);
 
-  const handleNumberOfPlayers = (event) => {
-    setNumOfPlayers(event.target.value);
-  };
+  SetErrorRoom(setErrorRoom, roomValidator, playersRoom);
 
-  const handlerRoundsGame = (event) => {
-    setRounds(event.target.value);
-  };
+  SetErrorPlayers(setErrorPlayers, playersValidator, numOfPlayers);
 
-  const handlePlayerShot = (event) => {
-    setPlayerShot(event.target.value);
-  };
+  SetErrorShot(setErrorShot, shotValidator, playerShot);
+
+  SetGameOver(connectionMessages, rounds, roundsStorage, setGameOver);
+
+  SetShowSettings(connectionMessages, setShowSettings);
+
+  SetConnectionMessages(
+    players,
+    connectionMessages,
+    setConnectionMessages,
+    setDisconnectedUsers
+  );
 
   return (
     <>
-      <GameSettings
-        connectionMessages={connectionMessages}
-        handleUserId={handleUserId}
-        handleRoomName={handleRoomName}
-        handleNumberOfPlayers={handleNumberOfPlayers}
-        HandlerNewUser={HandlerNewUser}
-        userNameId={userNameId}
-        playersRoom={playersRoom}
-        numOfPlayers={numOfPlayers}
-        players={players}
-        playerShot={playerShot}
-        setPlayerShot={setPlayerShot}
-        userId={userId}
-        turn={turn}
-        handlePlayerShot={handlePlayerShot}
-        UserShotHandler={UserShotHandler}
-        score={score}
-        playersQueue={playersQueue}
-        roundsStorage={roundsStorage}
-        storedWinningNumber={storedWinningNumber}
-        disconnectedUsers={disconnectedUsers}
-        handlerRoundsGame={handlerRoundsGame}
-        rounds={rounds}
-        connectionErrorMessage={connectionErrorMessage}
-      />
+      <GameSettings />
     </>
   );
 };

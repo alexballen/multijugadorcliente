@@ -19,3 +19,4 @@ export { default as ChatMessageE } from "./ChatMessageE";
 export { default as NicknameE } from "./NicknameE";
 export { default as RoomE } from "./RoomE";
 export { default as ShotE } from "./ShotE";
+export { default as ClearStorageE } from "./ClearStorageE";

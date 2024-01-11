@@ -1,6 +1,7 @@
+import Swal from "sweetalert2";
+
 const HandleReload = (
   players,
-  Swal,
   string,
   userNameId,
   playersRoom,

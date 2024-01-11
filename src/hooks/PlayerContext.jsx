@@ -28,6 +28,12 @@ export const PlayerProvider = ({ children }) => {
   const [playersRoom, setPlayersRoom] = useState("");
   const [userNameId, setUserNameId] = useState("");
   const [playerShot, setPlayerShot] = useState("");
+  const [errorAlias, setErrorAlias] = useState({});
+  const [errorRoom, setErrorRoom] = useState({});
+  const [errorPlayers, setErrorPlayers] = useState({});
+  const [errorShot, setErrorShot] = useState({});
+  const [gameOver, setGameOver] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   return (
     <PlayerContext.Provider
@@ -76,6 +82,18 @@ export const PlayerProvider = ({ children }) => {
         setUserNameId,
         playerShot,
         setPlayerShot,
+        errorAlias,
+        setErrorAlias,
+        errorRoom,
+        setErrorRoom,
+        errorPlayers,
+        setErrorPlayers,
+        errorShot,
+        setErrorShot,
+        gameOver,
+        setGameOver,
+        showSettings,
+        setShowSettings,
       }}
     >
       {children}
