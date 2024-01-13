@@ -22,3 +22,4 @@ export { default as GetCurrentTime } from "./GetCurrentTime";
 export { default as ScrollTop } from "./ScrollTop";
 export { default as SetShowSettings } from "./SetShowSettings";
 export { default as SetConnectionMessages } from "./SetConnectionMessages";
+export { default as HasVibrationService } from "./HasVibrationService";

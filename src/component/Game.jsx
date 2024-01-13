@@ -32,6 +32,7 @@ import {
   SetGameOver,
   SetShowSettings,
   SetConnectionMessages,
+  HasVibrationService,
 } from "../services";
 import GameSettings from "./GameSettings";
 import {
@@ -140,6 +141,8 @@ const Game = () => {
     setConnectionMessages,
     setDisconnectedUsers
   );
+
+  HasVibrationService();
 
   return (
     <>
