@@ -27,19 +27,6 @@ const HasVibrationService = () => {
   };
 
   useEffect(() => {
-    if (esDispositivoMovil && !mostrarAlerta) {
-      console.log("Usuario desde un dispositivo móvil");
-      if ("vibrate" in navigator) {
-        console.log("La API de Vibración es compatible.");
-      } else {
-        console.log("La API de Vibración no es compatible.");
-      }
-    } else {
-      console.log("Usuario desde un computador");
-    }
-  }, [turn]);
-
-  useEffect(() => {
     if (esDispositivoMovil && mostrarAlerta) {
       alert("¿Permitir que la aplicación utilice la vibración?");
       solicitarPermisoVibracion();
@@ -50,10 +37,10 @@ const HasVibrationService = () => {
     if (Object.keys(userId).length > 0 && Object.keys(turn).length > 0) {
       if (userId.userId === turn.user) {
         console.log(`Vibro en el usuario ${userId.userId}`);
-        navigator.vibrate([100, 50, 200]);
+        navigator.vibrate([1000]);
       }
     }
-  }, [userId.userId, turn.user]);
+  }, [userId, turn]);
 };
 
 export default HasVibrationService;
